@@ -21,14 +21,14 @@ class Client(models.Model):
     name = models.CharField(max_length=20)
     gender = models.CharField(max_length=1, choices=GENDERS)
     age = models.PositiveIntegerField(blank=True)
-    telephone = models.PositiveIntegerField(blank=True, max_length=8, min_length=8)
+    telephone = models.PositiveIntegerField(blank=True)
     email = models.EmailField(max_length=254)
 
 class Employee(models.Model):
     name = models.CharField(max_length=20)
     gender = models.CharField(max_length=1, choices=GENDERS)
     age = models.PositiveIntegerField(blank=True)
-    telephone = models.PositiveIntegerField(blank=True, max_length=8, min_length=8)
+    telephone = models.PositiveIntegerField(blank=True)
     email = models.EmailField(max_length=254)
 
 class Appointment(models.Model):
