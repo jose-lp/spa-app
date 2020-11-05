@@ -17,11 +17,12 @@ from django.contrib import admin
 from django.urls import path
 
 from appointments import views
+import appointments
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/', views.home, name='home'),
-    path('new/', views.new, name='new'),
-    path('delete/', views.delete, name='delete'),
-    path('check', views.check, name='check')
+    path('index/', views.index, name='index'),
+    #path('new/', views.new, name='appointments'),
+    #path('delete/', views.delete, name='delete'),
+    #path('check', views.check, name='check')
 ]

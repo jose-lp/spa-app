@@ -23,6 +23,7 @@ class Client(models.Model):
     age = models.PositiveIntegerField(blank=True)
     telephone = models.PositiveIntegerField(blank=True)
     email = models.EmailField(max_length=254)
+    password =  models.CharField(max_length=10)
 
 class Employee(models.Model):
     name = models.CharField(max_length=20)

@@ -1,5 +1,18 @@
 from django import forms
 from .models import Client
+from .models import Appointment
+
+class LoginForm(forms.ModelForm):
+    class Meta:
+        model = Client
+        fields = [
+            'email',
+            'password'
+        ]
+        labels = {
+            'email' = 'Email',
+            'password' = 'Password'
+        }
 
 class ClientForm(forms.ModelForm):
     class Meta:
@@ -10,6 +23,7 @@ class ClientForm(forms.ModelForm):
             'age',
             'telephone',
             'email',
+            'passw',
         ]
         labels = {
             'name'      = 'Name',
@@ -17,6 +31,7 @@ class ClientForm(forms.ModelForm):
             'age'       = 'Age',
             'telephone' = 'Telephone',
             'email'     = 'Email'
+            'password'  = 'Password',
         }
 
 class AppointmentForm(forms.ModelForm):
