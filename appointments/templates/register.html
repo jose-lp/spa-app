@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <!-- NAVIGATION -->
+    <link rel="stylesheet" href="https://bootswatch.com/4/cyborg/bootstrap.min.css">
+  </head>
+  <body>
+   
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+    <div class="row">
+      <div class="col-md-4 offset-md-4 card">
+        <div class="card-body">
+          <form action="/update/<%= data.id %>" method="POST">
+            
+            <div class="form-group">
+              <div class="row">
+                <div class="col">
+                  <label for="first_name">First name</label>
+                  <input type="text" class="form-control" placeholder="First name">
+                </div>
+                <div class="col">
+                  <label for="last_name">Last name</label>
+                  <input type="text" class="form-control" placeholder="Last name">
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <div class="row"">
+                <div class="col">
+                  <label for="gender">Gender</label>
+                  <select class="form-control" id="gender" placeholder="Gender">
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div class="col">
+                  <label for="age">Age</label>
+                  <input type="text" name="age" placeholder="Age" class="form-control">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col">
+                  <label for="inputEmail4">Email</label>
+                  <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                </div>
+                <div class="col">
+                  <label for="phone_number">Phone number</label>
+                  <input type="tel" class="form-control" placeholder="(506)-5555-5555" id="phone_number">
+                </div>
+              </div>
+            </div>    
+
+            <div class="form-group"></div>
+              <div class="row">
+                <div class="col">
+                  <label for="inputPassword4">Password</label>
+                  <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+                </div>
+                <div class="col">
+                  <label for="confirmPassword4">Confirm password</label>
+                  <input type="password" class="form-control" id="confirmtPassword4" placeholder="Password">
+                </div>
+              </div>
+              <center>
+                </br>
+                </br>
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Register</button>
+              </br>
+              </center>
+            </div>
+            
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+

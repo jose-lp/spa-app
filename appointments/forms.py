@@ -40,14 +40,12 @@ class AppointmentForm(forms.ModelForm):
         fields = [
             'client',
             'service',
-            'employee',
             'date',
             'time',
         ]
         labels = {
             'client'   = 'Client',
             'service'  = 'Service',
-            'employee' = 'Employee',
             'date'     = 'Date',
             'time'     = 'Time',
         }

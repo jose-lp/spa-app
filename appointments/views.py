@@ -2,17 +2,32 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 # Create your views here.
-def index(request):
+def home(request):
     return render(
         request,
-        'index.html'
+        'home.html'
     )
 
-def new(request):
-    return HttpResponse('Showing "new" page')
+def register(request):
+    return render(
+        request,
+        'register.html'
+    )
 
-def delete(request):
-    return HttpResponse('Showing "delete" page')
+def edit_client(request):
+    return render(
+        request,
+        'edit_client.html'
+    )
 
-def check(request):
-    return HttpResponse('Showing "check" page')
+def appointments(request):
+    return render(
+        request,
+        'appointments.html'
+    )
+
+def edit_appointment(request):
+    return render(
+        request,
+        'edit_appointment.html'
+    )

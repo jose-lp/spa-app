@@ -19,22 +19,15 @@ SERVICES =[
 
 class Client(models.Model):
     name = models.CharField(max_length=20)
+    last_name = models.CharField(max_length=20)
     gender = models.CharField(max_length=1, choices=GENDERS)
     age = models.PositiveIntegerField(blank=True)
     telephone = models.PositiveIntegerField(blank=True)
     email = models.EmailField(max_length=254)
     password =  models.CharField(max_length=10)
 
-class Employee(models.Model):
-    name = models.CharField(max_length=20)
-    gender = models.CharField(max_length=1, choices=GENDERS)
-    age = models.PositiveIntegerField(blank=True)
-    telephone = models.PositiveIntegerField(blank=True)
-    email = models.EmailField(max_length=254)
-
 class Appointment(models.Model):
     client  = models.ForeignKey(Client, on_delete=models.CASCADE)
     service = models.CharField(max_length=1, choices=SERVICES)
-    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
     date = models.DateField(auto_now_add=True)
     time = models.TimeField(auto_now=False, auto_now_add=False)

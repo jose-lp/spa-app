@@ -21,8 +21,9 @@ import appointments
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('index/', views.index, name='index'),
-    #path('new/', views.new, name='appointments'),
-    #path('delete/', views.delete, name='delete'),
-    #path('check', views.check, name='check')
+    path('home/', views.home, name='home'),
+    path('register/', views.register, name='register'),
+    path('edit_client/', views.edit_client, name='edit_client'),
+    path('appointments/', views.appointments, name='appointments'),
+    path('edit_appointment/', views.edit_appointment, name='edit_appointment'),
 ]
