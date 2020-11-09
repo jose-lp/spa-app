@@ -1,12 +1,33 @@
+from django.db.models.fields import EmailField
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib import messages
-from .forms import ClientForm
+from .forms import ClientForm, LoginForm
 from .forms import AppointmentForm
+from .models import Client
 
 # Create your views here.
 def home(request):
-    return render(request,'home.html')
+    form = LoginForm()
+    
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            print("validar")
+            f_email = str(form.cleaned_data['email'])
+            f_passw = str(form.cleaned_data['password'])
+            user    = Client.objects.raw('SELECT * FROM appointments_client WHERE email = %s', [f_email])
+            if user[0] is not None:
+                if user[0].password == f_passw:
+                    print("iguales")
+                    request.session['user'] = user[0].email
+                    print(user)
+                    form = AppointmentForm()
+                    return render(request, 'appointments.html', {'form': form})
+
+        return render(request, 'home.html', {'form': form})
+    else:
+        return render(request,'home.html', {'form': form})
 
 def register(request):
     if request.method == 'POST':

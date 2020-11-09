@@ -38,6 +38,7 @@
         <div class="card-body">
   
           <form action="../appointments/" method="POST">
+            {% csrf_token %} 
             <center><h3>Registro</h3></center>
             </br>
             <div class="form-group row">

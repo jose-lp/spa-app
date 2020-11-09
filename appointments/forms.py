@@ -11,10 +11,6 @@ class LoginForm(forms.ModelForm):
             'email',
             'password',
             ]
-        labels = {
-           'email'    : 'Email',
-           'password' : 'Password',
-        }
 
 class ClientForm(forms.ModelForm):
     re_password = forms.CharField(max_length=128, widget=PasswordInput())
@@ -49,9 +45,3 @@ class AppointmentForm(forms.ModelForm):
             'date',
             'time',
         ]
-        labels = {
-            'client'   : 'Client',
-            'service'  : 'Service',
-            'date'     : 'Date',
-            'time'     : 'Time',
-        }
