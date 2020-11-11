@@ -1,12 +1,13 @@
 from django import forms
 from .models import Client
 from .models import Appointment
+from .models import Login
 
 from django.forms import PasswordInput
 
 class LoginForm(forms.ModelForm):
     class Meta:
-        model = Client
+        model = Login
         fields = [
             'email',
             'password',
@@ -40,7 +41,7 @@ class AppointmentForm(forms.ModelForm):
     class Meta:
         model = Appointment
         fields = [
-            'client',
+            'client_id',
             'service',
             'date',
             'time',

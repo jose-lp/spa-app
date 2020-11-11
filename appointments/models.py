@@ -29,17 +29,22 @@ TIME = [
 ]
 
 class Client(models.Model):
+    id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
     gender = models.CharField(max_length=6, choices=GENDERS)
     age = models.PositiveIntegerField(blank=True)
     telephone = models.PositiveIntegerField(blank=True)
-    email = models.EmailField(max_length=254)
+    email = models.EmailField(max_length=254, unique=True)
     password =  models.CharField(max_length=10)
     re_password =  models.CharField(max_length=10)
 
 class Appointment(models.Model):
-    client  = models.ForeignKey(Client, on_delete=models.CASCADE)
+    client_id = models.ForeignKey(Client, on_delete=models.CASCADE)
     service = models.CharField(max_length=25, choices=SERVICES)
     date = models.DateField()
     time = models.CharField(max_length=10, choices=TIME)
+
+class Login(models.Model):
+    email = models.EmailField(max_length=254, unique=True)
+    password = models.CharField(max_length=10)
