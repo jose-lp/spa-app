@@ -1,5 +1,5 @@
 from django import forms
-from .models import Client
+from .models import User
 from .models import Appointment
 from .models import Login
 
@@ -13,16 +13,15 @@ class LoginForm(forms.ModelForm):
             'password',
             ]
 
-class ClientForm(forms.ModelForm):
-    re_password = forms.CharField(max_length=128, widget=PasswordInput())
-
+class UserForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
-        super(ClientForm, self).__init__(*args, **kwargs)
+        super(UserForm, self).__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
             field.required = True
     class Meta:
-        model = Client
+        model = User
         fields = [
+            'type_user',
             'first_name',
             'last_name',
             'gender',
@@ -30,18 +29,14 @@ class ClientForm(forms.ModelForm):
             'telephone',
             'email',
             'password',
-            're_password',
         ]
-        widgets = {
-            'password': PasswordInput(),
-            're_password': PasswordInput()
-        }
 
 class AppointmentForm(forms.ModelForm):
     class Meta:
         model = Appointment
         fields = [
-            'client_id',
+            'user_id',
+            'estetician',
             'service',
             'date',
             'time',

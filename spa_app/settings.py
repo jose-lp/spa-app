@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'appointments.apps.AppointmentsConfig',
+    'django_tables2',
     'widget_tweaks',
     'bootstrap3',
 ]
@@ -125,3 +126,4 @@ STATIC_URL = '/static/'
 #STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 #VENV_PATH = os.path.dirname(BASE_DIR)
 #STATIC_ROOT = os.path.join(VENV_PATH, 'static_root')
+DJANGO_TABLES2_TEMPLATE = "django_tables2/bootstrap.html"

@@ -1,0 +1,16 @@
+****** TODO ******
+
+3 - Agregar esteticista, tabla y query.
+5 - Saber cuáles citas están disponibles.
+6 - El administrador puede crear citas en nombre de cualquier usuario.
+7 - Modificar/ eliminar citas
+8 - Debe haber imágenes o animaciones.
+9 - Docker
+10 - Video
+11 - Agregar página de admin
+12 - Mostrar notas, ej: usuario o password incorrecto
+
+****** DONE ******
+1 - Modelo Usuario.
+2 - Tipo de usuario (admin, normal)
+4 - Agregar esteticista a la cita.a

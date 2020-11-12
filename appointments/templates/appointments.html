@@ -10,7 +10,7 @@
     <!-- navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="../appointments">Citas</a>
-      <a class="navbar-brand" href="../edit_client">Perfil</a>
+      <a class="navbar-brand" href="../edit_user">Perfil</a>
     </nav>
 
 </br>
@@ -23,14 +23,21 @@
         <table class="table table-bordered table-hover">
           <thead>
             <tr>
-              <td>n°</td>
+              <td>Estetician</td>   
               <td>Service</td>
               <td>Date</td>
               <td>Time</td>
             </tr>
           </thead>
           <tbody>
-            
+            {% for appointment in appointments_usr %}
+              <tr>
+                <td> {{appointment.estetician}}</td>
+                <td> {{appointment.service}}</td>
+                <td> {{appointment.date}}</td>
+                <td> {{appointment.time}}</td>
+              <tr>
+            {% endfor %}
           </tbody>
         </table>
       </div>
@@ -42,7 +49,7 @@
             <center><h3>Registro</h3></center>
             </br>
             <div class="form-group row">
-              <input type="hidden" id="id_client" name="client" value={{ request.session.user }}>
+              <input type="hidden" id="id_user_id" name="user_id" value={{ request.session.user }}>
             </div>
             <div class="form-group row">
               <label for="id_date" class="col-2 col-form-label">Date</label>
@@ -65,6 +72,16 @@
                   <option>3:00 PM</option>
                   <option>4:00 PM</option>
 
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="id_estetician" class="col-2 col-form-label">Estetician</label>
+              <div class="col-10">  
+                <select class="form-control" id="id_estetician" name="estetician" >
+                  <option>José López</option>
+                  <option>Mariela Hernández</option>
                 </select>
               </div>
             </div>

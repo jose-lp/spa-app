@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import Client, Appointment
+from .models import User, Appointment
 
 # Register your models here.
-admin.site.register(Client)
+admin.site.register(User)
 admin.site.register(Appointment)

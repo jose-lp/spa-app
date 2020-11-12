@@ -8,6 +8,11 @@ GENDERS =[
     ( 'Other'  , 'O')
 ]
 
+TYPE_USER =[
+    ( 'Admin'  , 'A'),
+    ( 'Normal' , 'N')
+]
+
 SERVICES =[
     ( 'Massage'                , '0' ),
     ( 'Manicure'               , '1' ),
@@ -28,8 +33,14 @@ TIME = [
     ( '4:00 PM' , '16:00'),
 ]
 
-class Client(models.Model):
+ESTETICIANS = [
+    ( 'José Lopez', 'JL'),
+    ( 'Mariela Hernández', 'MH')
+]
+
+class User(models.Model):
     id = models.AutoField(primary_key=True)
+    type_user =  models.CharField(max_length=7, choices=TYPE_USER)
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
     gender = models.CharField(max_length=6, choices=GENDERS)
@@ -37,10 +48,10 @@ class Client(models.Model):
     telephone = models.PositiveIntegerField(blank=True)
     email = models.EmailField(max_length=254, unique=True)
     password =  models.CharField(max_length=10)
-    re_password =  models.CharField(max_length=10)
 
 class Appointment(models.Model):
-    client_id = models.ForeignKey(Client, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    estetician = models.CharField(max_length=25, choices=ESTETICIANS)
     service = models.CharField(max_length=25, choices=SERVICES)
     date = models.DateField()
     time = models.CharField(max_length=10, choices=TIME)
