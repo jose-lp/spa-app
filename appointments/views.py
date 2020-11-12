@@ -69,14 +69,23 @@ def appointments(request):
     appointments_list = []
     for p in appointments_user:
         appointments_list.append({'estetician': p.estetician,'service': p.service, 'date': p.date, 'time': p.time})
-
-    print(appointments_list)
+    #print("afuera")
+    #print(appointments_list)
+    
     if request.method == 'POST':
         form = AppointmentForm(request.POST)
         if form.is_valid():
             print("form valido")
             form.save()
+            appointments_user = Appointment.objects.all().filter(user_id=request.session['user'])
+
+            appointments_list = []
+            for p in appointments_user:
+                appointments_list.append({'estetician': p.estetician,'service': p.service, 'date': p.date, 'time': p.time})
+            print("adentro")
+            print(appointments_list)
         else:
+            print("no valido")
             return render(request,'appointments.html', {'form': form ,'appointments_usr': appointments_list})
             
         return render(request, 'appointments.html', {'form': form ,'appointments_usr': appointments_list})

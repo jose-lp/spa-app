@@ -34,7 +34,7 @@ TIME = [
 ]
 
 ESTETICIANS = [
-    ( 'José Lopez', 'JL'),
+    ( 'José López', 'JL'),
     ( 'Mariela Hernández', 'MH')
 ]
 
@@ -50,6 +50,7 @@ class User(models.Model):
     password =  models.CharField(max_length=10)
 
 class Appointment(models.Model):
+    id = models.AutoField(primary_key=True)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     estetician = models.CharField(max_length=25, choices=ESTETICIANS)
     service = models.CharField(max_length=25, choices=SERVICES)

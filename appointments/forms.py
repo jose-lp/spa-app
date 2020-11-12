@@ -2,7 +2,6 @@ from django import forms
 from .models import User
 from .models import Appointment
 from .models import Login
-
 from django.forms import PasswordInput
 
 class LoginForm(forms.ModelForm):
@@ -35,6 +34,7 @@ class AppointmentForm(forms.ModelForm):
     class Meta:
         model = Appointment
         fields = [
+            'id',
             'user_id',
             'estetician',
             'service',

@@ -12,102 +12,129 @@
       <a class="navbar-brand" href="../appointments">Citas</a>
       <a class="navbar-brand" href="../edit_user">Perfil</a>
     </nav>
-
-</br>
 </br>
 <center><h2>Appointment Manager</h2></center>
 
 <div class="container mt-5">
-    <div class="row">
-      <div class="col-md-7">
-        <table class="table table-bordered table-hover">
-          <thead>
+  <div class="row">
+    <div class="col-md-7">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <td>ID</td>
+            <td>Estetician</td>   
+            <td>Service</td>
+            <td>Date</td>
+            <td>Time</td>
+          </tr>
+        </thead>
+        <tbody>
+          {% for appointment in appointments_usr %}
             <tr>
-              <td>Estetician</td>   
-              <td>Service</td>
-              <td>Date</td>
-              <td>Time</td>
-            </tr>
-          </thead>
-          <tbody>
-            {% for appointment in appointments_usr %}
-              <tr>
-                <td> {{appointment.estetician}}</td>
-                <td> {{appointment.service}}</td>
-                <td> {{appointment.date}}</td>
-                <td> {{appointment.time}}</td>
-              <tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
-      <div class="col-md-5">
-        <div class="card-body">
+              <td> {{appointment.id}}</td>
+              <td> {{appointment.estetician}}</td>
+              <td> {{appointment.service}}</td>
+              <td> {{appointment.date}}</td>
+              <td> {{appointment.time}}</td>
+            <tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-5">
+      <div class="card-body">
   
-          <form action="../appointments/" method="POST">
-            {% csrf_token %} 
-            <center><h3>Registro</h3></center>
-            </br>
-            <div class="form-group row">
-              <input type="hidden" id="id_user_id" name="user_id" value={{ request.session.user }}>
+        <form action="../appointments/" method="POST">
+          {% csrf_token %} 
+          <center><h3>Register Appointment</h3></center>
+          <div class="form-group row">
+            <input type="hidden" id="id_user_id" name="user_id" value={{ request.session.user }}>
+          </div>
+          <div class="form-group row">
+            <label for="id_date" class="col-2 col-form-label">Date</label>
+            <div class="col-10">
+              <input class="form-control" type="date" value="2020-08-19" id="id_date" name="date">
             </div>
-            <div class="form-group row">
-              <label for="id_date" class="col-2 col-form-label">Date</label>
-              <div class="col-10">
-                <input class="form-control" type="date" value="2020-08-19" id="id_date" name="date">
-              </div>
+          </div>
+  
+          <div class="form-group row">
+            <label for="id_time" class="col-2 col-form-label">Time</label>
+            <div class="col-10">
+            <select class="form-control" id="id_time" placeholder="" name="time" >
+                <option></option>
+                <option>8:00 AM</option>
+                <option>9:00 AM</option>
+                <option>10:00 AM</option>
+                <option>11:00 AM</option>
+                <option>1:00 PM</option>
+                <option>2:00 PM</option>
+                <option>3:00 PM</option>
+                <option>4:00 PM</option>
+     
+              </select>
             </div>
+          </div>
+  
+          <div class="form-group row">
+            <label for="id_estetician" class="col-2 col-form-label">Estetician</label>
+            <div class="col-10">  
+              <select class="form-control" id="id_estetician" name="estetician" >
+                <option>José López</option>
+                <option>Mariela Hernández</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-group row">
+            <label for="id_service" class="col-2 col-form-label">Service</label>
+            <div class="col-10">  
+              <select class="form-control" id="id_service" placeholder="Service" name="service" >
+                <option>Massage</option>
+                <option>Manicure</option>
+                <option>Pedicure</option>
+                <option>Facial Cleansing</option>
+                <option>Permanent Hair Removal</option>
+                <option>Cryotherapy</option>
+              </select>
+            </div>
+          </div>
 
-            <div class="form-group row">
-              <label for="id_time" class="col-2 col-form-label">Time</label>
-              <div class="col-10">
-              <select class="form-control" id="id_time" placeholder="" name="time" >
-                  <option></option>
-                  <option>8:00 AM</option>
-                  <option>9:00 AM</option>
-                  <option>10:00 AM</option>
-                  <option>11:00 AM</option>
-                  <option>1:00 PM</option>
-                  <option>2:00 PM</option>
-                  <option>3:00 PM</option>
-                  <option>4:00 PM</option>
+          <center>
 
-                </select>
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <label for="id_estetician" class="col-2 col-form-label">Estetician</label>
-              <div class="col-10">  
-                <select class="form-control" id="id_estetician" name="estetician" >
-                  <option>José López</option>
-                  <option>Mariela Hernández</option>
-                </select>
-              </div>
-            </div>
-            
-            <div class="form-group row">
-              <label for="id_service" class="col-2 col-form-label">Service</label>
-              <div class="col-10">  
-                <select class="form-control" id="id_service" placeholder="Service" name="service" >
-                  <option>Massage</option>
-                  <option>Manicure</option>
-                  <option>Pedicure</option>
-                  <option>Facial Cleansing</option>
-                  <option>Permanent Hair Removal</option>
-                  <option>Cryotherapy</option>
-                </select>
-              </div>
-            </div>
-            <center>
-            </br>
             <button type="submit" class="btn btn-primary btn-block">Reserve</button>
-          </br>
           </center>
-          </form>
+
+        </form>
+        
+        <div class="row" >
+          <div class="card-body">
+            <form action="../appointments/" method="POST">
+              {% csrf_token %} 
+              </br>
+              <center><h3>Edit Appointment</h3></center>
+
+
+              <div class="form-group row">
+                <label for="id_service" class="col-2 col-form-label">ID</label>
+                <div class="col-10">  
+                  <select class="form-control" id="id_id" name="id" >
+                    {% for p in appointments_usr %}
+                      <option>{{p.id}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block">Edit</button>
+              <button type="submit" class="btn btn-primary btn-block">Delete</button>
+
+            </form>
+          </div>
         </div>
       </div>
     </div>
+      
   </div>
+</div>
 </body>
 </html>
