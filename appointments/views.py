@@ -9,6 +9,24 @@ from .models import Appointment
 import django_tables2 as tables
 
 
+TIME = [
+    ('8:00 AM', 'José López'),
+    ('8:00 AM', 'Mariela Hernández'), 
+    ('9:00 AM' , 'José López'),
+    ('9:00 AM' , 'Mariela Hernández'),
+    ('10:00 AM' , 'José López'),
+    ('10:00 AM' , 'Mariela Hernández'),
+    ('11:00 AM' , 'José López'),
+    ('11:00 AM' , 'Mariela Hernández'),
+    ('1:00 PM' , 'José López'),
+    ('1:00 PM' , 'Mariela Hernández'),
+    ('2:00 PM' , 'José López'),
+    ('2:00 PM' , 'Mariela Hernández'),
+    ('3:00 PM' , 'José López'),
+    ('3:00 PM' , 'Mariela Hernández'),
+    ('4:00 PM' , 'José López'),
+    ('4:00 PM' , 'Mariela Hernández') ]
+
 class AppointmentsTable(tables.Table):
 
     class Meta:
@@ -64,34 +82,94 @@ def edit_user(request):
     return render(request, 'edit_user.html')
 
 def appointments(request):
-    appointments_user = Appointment.objects.all().filter(user_id=request.session['user'])
 
+    appointments_usr  = get_appointments(request)
     appointments_list = []
-    for p in appointments_user:
-        appointments_list.append({'estetician': p.estetician,'service': p.service, 'date': p.date, 'time': p.time})
-    #print("afuera")
-    #print(appointments_list)
-    
-    if request.method == 'POST':
-        form = AppointmentForm(request.POST)
-        if form.is_valid():
-            print("form valido")
-            form.save()
-            appointments_user = Appointment.objects.all().filter(user_id=request.session['user'])
+
+    if request.method=='POST' and 'check_btn' in request.POST:
+        form = AppointmentForm()
+        try:
+            print("check")
+            request.session['date'] = request.POST['date']
+            appointments_by_date = get_appointments_by_date(request)
+
+            temp_TIME = TIME
+
+            for i in appointments_by_date:
+                if i in temp_TIME:
+                    temp_TIME.remove(i)
+            print(temp_TIME)
 
             appointments_list = []
-            for p in appointments_user:
-                appointments_list.append({'estetician': p.estetician,'service': p.service, 'date': p.date, 'time': p.time})
-            print("adentro")
+            for i in temp_TIME:
+                appointments_list.append(f'{i[0]} with {i[1]}') 
             print(appointments_list)
-        else:
-            print("no valido")
-            return render(request,'appointments.html', {'form': form ,'appointments_usr': appointments_list})
-            
-        return render(request, 'appointments.html', {'form': form ,'appointments_usr': appointments_list})
-    else:
+        
+            return render(request, 'appointments.html', {'form': form ,'appointment_list': appointments_list,  'appointments_usr': appointments_usr})
+        except:
+
+            return render(request, 'appointments.html', {'form': form ,'appointment_list': appointments_list,  'appointments_usr': appointments_usr})
+
+    elif request.method == 'POST' and 'reserve_btn' in request.POST:
         form = AppointmentForm()
-        return render(request,'appointments.html', {'form': form ,'appointments_usr': appointments_list})
+        try:
+            info = request.POST['appointments'].split(sep=' with ')
+            print(request.POST)
+        
+            updated_request  = request.POST.copy()
+            updated_request.update({
+                'user_id': request.session['user'],
+                'date': request.session['date'],
+                'time': info[0],
+                'estetician': info[1],
+                'service': request.POST['service']
+            })
+            form = AppointmentForm(updated_request)
+          
+            if form.is_valid():
+                print("form valido")
+                form.save()
+                appointments_list = get_appointments(request)
+                print("adentro")
+                print(appointments_list)
+                del request.session['date']
+            else:
+                print("no valido")
+                form = AppointmentForm()
+                return render(request,'appointments.html', {'form': form ,'appointments_list': appointments_list, 'appointments_usr': appointments_usr})
+
+            return render(request, 'appointments.html', {'form': form ,'appointments_list': appointments_list, 'appointments_usr': appointments_usr})
+        except:
+            
+            return render(request, 'appointments.html', {'form': form ,'appointments_list': appointments_list, 'appointments_usr': appointments_usr})
+
+    
+    elif request.method=='POST' and 'delete_btn' in request.POST:
+        print("press delete")
+        # Se lee el id de la cita del request
+        appointment_id = request.POST['id']
+        print(appointment_id)
+
+        # Se elimina la cita utilizando el id
+        Appointment.objects.filter(id=appointment_id).delete()
+
+        # Se actualiza la tabla de citas
+        appointments_list = get_appointments(request)
+        
+        form = AppointmentForm()
+        return render(request, 'appointments.html', {'form': form ,'appointments_usr': appointments_usr})
+
+    
+    elif request.method=='POST' and 'edit_btn' in request.POST:
+        print("press edit")
+        form = AppointmentForm()
+        return render(request, 'edit_appointment.html', {'form': form ,'appointments_usr': appointments_usr})
+    
+    else:
+        appointments_list = get_appointments(request)
+        form = AppointmentForm()
+        return render(request, 'appointments.html', {'form': form ,'appointments_usr': appointments_usr})
+    
 
 def edit_appointment(request):
     return render(
@@ -99,3 +177,20 @@ def edit_appointment(request):
         'edit_appointment.html'
     )
 
+def get_appointments(request):
+    
+    appointments_user = Appointment.objects.all().filter(user_id=request.session['user'])
+
+    appointments_list = []
+    for p in appointments_user:
+        appointments_list.append({'id': p.id,'estetician': p.estetician,'service': p.service, 'date': p.date, 'time': p.time})
+
+    return appointments_list
+
+def get_appointments_by_date(request):
+    date_select = request.POST['date']
+    appointments_by_date = Appointment.objects.filter(date=date_select)
+    temp_list = []
+    for p in appointments_by_date:
+       temp_list.append((p.time, p.estetician))
+    return temp_list

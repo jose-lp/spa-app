@@ -9,8 +9,23 @@
 10 - Video
 11 - Agregar página de admin
 12 - Mostrar notas, ej: usuario o password incorrecto
+13 - Quitar etiquetas de arriba
+14 - Error entre home y appointments, pantalla no cambia
+15 - Modificar html de edit appointments
+16 - Modificar edit paciente
+17 - Arreglar barra log out
 
 ****** DONE ******
 1 - Modelo Usuario.
 2 - Tipo de usuario (admin, normal)
 4 - Agregar esteticista a la cita.a
+
+{% for appointment in appointments_usr %}
+            <tr>
+              <td> {{appointment.id}}</td>
+              <td> {{appointment.estetician}}</td>
+              <td> {{appointment.service}}</td>
+              <td> {{appointment.date}}</td>
+              <td> {{appointment.time}}</td>
+            <tr>
+          {% endfor %}

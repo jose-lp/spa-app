@@ -8,9 +8,8 @@
   </head>
   <body>
     <!-- navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="../appointments">Citas</a>
-      <a class="navbar-brand" href="../edit_user">Perfil</a>
+    <nav class="navbar navbar-dark bg-dark navbar-right">
+      <a class="navbar-brand" href="../home">Log Out</a>
     </nav>
 </br>
 <center><h2>Appointment Manager</h2></center>
@@ -41,70 +40,62 @@
         </tbody>
       </table>
     </div>
+
     <div class="col-md-5">
       <div class="card-body">
-  
+
         <form action="../appointments/" method="POST">
           {% csrf_token %} 
           <center><h3>Register Appointment</h3></center>
           <div class="form-group row">
-            <input type="hidden" id="id_user_id" name="user_id" value={{ request.session.user }}>
-          </div>
-          <div class="form-group row">
             <label for="id_date" class="col-2 col-form-label">Date</label>
             <div class="col-10">
-              <input class="form-control" type="date" value="2020-08-19" id="id_date" name="date">
-            </div>
-          </div>
-  
-          <div class="form-group row">
-            <label for="id_time" class="col-2 col-form-label">Time</label>
-            <div class="col-10">
-            <select class="form-control" id="id_time" placeholder="" name="time" >
-                <option></option>
-                <option>8:00 AM</option>
-                <option>9:00 AM</option>
-                <option>10:00 AM</option>
-                <option>11:00 AM</option>
-                <option>1:00 PM</option>
-                <option>2:00 PM</option>
-                <option>3:00 PM</option>
-                <option>4:00 PM</option>
-     
-              </select>
-            </div>
-          </div>
-  
-          <div class="form-group row">
-            <label for="id_estetician" class="col-2 col-form-label">Estetician</label>
-            <div class="col-10">  
-              <select class="form-control" id="id_estetician" name="estetician" >
-                <option>José López</option>
-                <option>Mariela Hernández</option>
-              </select>
-            </div>
-          </div>
-          
-          <div class="form-group row">
-            <label for="id_service" class="col-2 col-form-label">Service</label>
-            <div class="col-10">  
-              <select class="form-control" id="id_service" placeholder="Service" name="service" >
-                <option>Massage</option>
-                <option>Manicure</option>
-                <option>Pedicure</option>
-                <option>Facial Cleansing</option>
-                <option>Permanent Hair Removal</option>
-                <option>Cryotherapy</option>
-              </select>
+              <input class="form-control" type="date" id="id_date" name="date">
             </div>
           </div>
 
           <center>
-
-            <button type="submit" class="btn btn-primary btn-block">Reserve</button>
+            <button type="submit" class="btn btn-primary btn-block" name="check_btn" >Check Availability</button>
           </center>
 
         </form>
+
+        <div class="row" >
+          <div class="card-body">
+            <form action="../appointments/" method="POST">
+              {% csrf_token %} 
+              </br>
+              <div class="form-group row">
+                <input type="hidden" id="id_user_id" name="user_id" value={{ request.session.user }}>
+              </div>
+              <div class="form-group row">
+                <label for="id_appointments" class="col-2 col-form-label">Appts.</label>
+                <div class="col-10">  
+                  <select class="form-control" id="id_appointments" name="appointments" >
+                    {% for p in appointment_list %}
+                      <option>{{p}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="id_service" class="col-2 col-form-label">Service</label>
+                <div class="col-10">  
+                  <select class="form-control" id="id_service" name="service" >
+                    <option>Massage</option>
+                    <option>Manicure</option>
+                    <option>Pedicure</option>
+                    <option>Facial Cleansing</option>
+                    <option>Permanent Hair Removal</option>
+                    <option>Cryotherapy</option>
+                  </select>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block"  name="reserve_btn" > Reserve</button>
+            </form>
+          </div>
+        </div>
         
         <div class="row" >
           <div class="card-body">
@@ -125,9 +116,8 @@
                 </div>
               </div>
 
-              <button type="submit" class="btn btn-primary btn-block">Edit</button>
-              <button type="submit" class="btn btn-primary btn-block">Delete</button>
-
+              <button type="submit" class="btn btn-primary btn-block"  name="delete_btn" > Delete</button>
+              <button type="submit" class="btn btn-primary btn-block" name="edit_btn" > Edit </button>
             </form>
           </div>
         </div>

@@ -14,28 +14,28 @@ TYPE_USER =[
 ]
 
 SERVICES =[
-    ( 'Massage'                , '0' ),
-    ( 'Manicure'               , '1' ),
-    ( 'Pedicure'               , '2' ),
-    ( 'Facial Cleansing'       , '3' ),
-    ( 'Permanent Hair Removal' , '4' ),
-    ( 'Cryotherapy'            , '5' )
+    ( 'Massage'                , 'Massage' ),
+    ( 'Manicure'               , 'Manicure' ),
+    ( 'Pedicure'               , 'Pedicure' ),
+    ( 'Facial Cleansing'       , 'Facial Cleansing' ),
+    ( 'Permanent Hair Removal' , 'Permanent Hair Removal' ),
+    ( 'Cryotherapy'            , 'Cryotherapy' )
 ]
 
 TIME = [
-    ( '8:00 AM' , '8:00' ),
-    ( '9:00 AM' , '9:00' ),
-    ( '10:00 AM', '10:00'),
-    ( '11:00 AM', '11:00'),
-    ( '1:00 PM' , '13:00'),
-    ( '2:00 PM' , '14:00'),
-    ( '3:00 PM' , '15:00'),
-    ( '4:00 PM' , '16:00'),
+    ( '8:00 AM' , '8:00 AM' ),
+    ( '9:00 AM' , '9:00 AM' ),
+    ( '10:00 AM', '10:00 AM'),
+    ( '11:00 AM', '11:00 AM'),
+    ( '1:00 PM' , '1:00 PM'),
+    ( '2:00 PM' , '2:00 PM'),
+    ( '3:00 PM' , '3:00 PM'),
+    ( '4:00 PM' , '4:00 PM'),
 ]
 
 ESTETICIANS = [
-    ( 'José López', 'JL'),
-    ( 'Mariela Hernández', 'MH')
+    ( 'José López', 'José López'),
+    ( 'Mariela Hernández', 'Mariela Hernández')
 ]
 
 class User(models.Model):
