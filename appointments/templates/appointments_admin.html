@@ -12,7 +12,7 @@
       <a class="navbar-brand" href="../home">Log Out</a>
     </nav>
 </br>
-<center><h2>Appointment Manager</h2></center>
+<center><h2>Appointment Admin Manager</h2></center>
 
 <div class="container mt-5">
   <div class="row">
@@ -21,6 +21,7 @@
         <thead>
           <tr>
             <td>ID</td>
+            <td>Name</td>
             <td>Estetician</td>   
             <td>Service</td>
             <td>Date</td>
@@ -30,7 +31,8 @@
         <tbody>
           {% for appointment in appointments_usr %}
             <tr>
-              <td> {{appointment.id}}</td>
+              <td> {{appointment.id}} </td>
+              <td> {{appointment.name}} </td>
               <td> {{appointment.estetician}}</td>
               <td> {{appointment.service}}</td>
               <td> {{appointment.date}}</td>
@@ -44,7 +46,7 @@
     <div class="col-md-5">
       <div class="card-body">
 
-        <form action="../appointments/" method="POST">
+        <form action="../appointments_admin/" method="POST">
           {% csrf_token %} 
           <center><h3>Register Appointment</h3></center>
           <div class="form-group row">
@@ -62,7 +64,7 @@
 
         <div class="row" >
           <div class="card-body">
-            <form action="../appointments/" method="POST">
+            <form action="../appointments_admin/" method="POST">
               {% csrf_token %} 
               </br>
               <div class="form-group row">
@@ -73,6 +75,16 @@
                 <div class="col-10">  
                   <select class="form-control" id="id_appointments" name="appointments" >
                     {% for p in appointment_list %}
+                      <option>{{p}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="id_service" class="col-2 col-form-label">Client</label>
+                <div class="col-10">  
+                  <select class="form-control" id="id_user_sel" name="user_sel" >
+                    {% for p in client_list %}
                       <option>{{p}}</option>
                     {% endfor %}
                   </select>
@@ -92,17 +104,16 @@
                 </div>
               </div>
               <center>
-              <h6 for="id_error_date" class="text-danger"> {{error.date}}</h6>
+              <h6 for="id_error_date" class="text-danger"> {{error.date}} </h6>
               </center>
               <button type="submit" class="btn btn-primary btn-block"  name="reserve_btn" > Reserve</button>
-            
             </form>
           </div>
         </div>
         
         <div class="row" >
           <div class="card-body">
-            <form action="../appointments/" method="POST">
+            <form action="../appointments_admin/" method="POST">
               {% csrf_token %} 
               </br>
               <center><h3>Edit Appointment</h3></center>

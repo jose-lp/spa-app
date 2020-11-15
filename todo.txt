@@ -1,31 +1,31 @@
 ****** TODO ******
-
-3 - Agregar esteticista, tabla y query.
-5 - Saber cuáles citas están disponibles.
-6 - El administrador puede crear citas en nombre de cualquier usuario.
-7 - Modificar/ eliminar citas
-8 - Debe haber imágenes o animaciones.
 9 - Docker
 10 - Video
-11 - Agregar página de admin
-12 - Mostrar notas, ej: usuario o password incorrecto
-13 - Quitar etiquetas de arriba
-14 - Error entre home y appointments, pantalla no cambia
-15 - Modificar html de edit appointments
-16 - Modificar edit paciente
-17 - Arreglar barra log out
 
 ****** DONE ******
 1 - Modelo Usuario.
 2 - Tipo de usuario (admin, normal)
+3 - Agregar esteticista, tabla y query.
 4 - Agregar esteticista a la cita.a
+5 - Saber cuáles citas están disponibles.
+7 - Modificar/ eliminar citas
+15 - Modificar html de edit appointments
+16 - Modificar edit paciente
+11 - Agregar página de admin
+6 - El administrador puede crear citas en nombre de cualquier usuario.
+14 - Error entre home y appointments, pantalla no cambia
+19 - register no apunta a home
+20 - bug al recargar edit_appointment_admin y adit_appointment
+18 - register guardar nombre y también update para edit de admin
+8 - Debe haber imágenes o animaciones.
+17 - Arreglar barra log out
+12 - Mostrar notas, ej: usuario o password incorrecto
+13 - Quitar etiquetas de arriba
+21 - limpiar código
 
-{% for appointment in appointments_usr %}
-            <tr>
-              <td> {{appointment.id}}</td>
-              <td> {{appointment.estetician}}</td>
-              <td> {{appointment.service}}</td>
-              <td> {{appointment.date}}</td>
-              <td> {{appointment.time}}</td>
-            <tr>
-          {% endfor %}
+
+
+
+Trabajar el html con mucho cuidado y ordenado.a
+prints
+lenguaje desconocido, tomó mucho tiempo en aprender

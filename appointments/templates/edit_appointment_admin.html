@@ -9,7 +9,7 @@
   <body>
     <!-- navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="../appointments">Appointments</a>
+      <a class="navbar-brand" href="../appointments_admin">Appointments</a>
       <a class="navbar-brand" href="../home">Log Out</a>
     </nav>
 
@@ -19,11 +19,12 @@
 
 <center>
 <div class="container mt-5">
+                
     <div class="row">
       <div class="col-md-5 mx-auto">
         <div class="card-body">
   
-          <form action="../edit_appointment/" method="POST">
+          <form action="../edit_appointment_admin/" method="POST">
             {% csrf_token %} 
             <div class="form-group row">
               <label for="id_date" class="col-2 col-form-label">Date</label>
@@ -40,7 +41,7 @@
   
           <div class="row" >
             <div class="card-body">
-              <form action="../edit_appointment/" method="POST">
+              <form action="../edit_appointment_admin/" method="POST">
                 {% csrf_token %} 
                 </br>
                 <div class="form-group row">
@@ -53,6 +54,18 @@
                     </select>
                   </div>
                 </div>
+                
+                <div class="form-group row">
+                  <label for="id_service" class="col-2 col-form-label">Client</label>
+                  <div class="col-10">  
+                    <select class="form-control" id="id_user_sel" name="user_sel" >
+                      {% for p in client_list %}
+                        <option>{{p}}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+
                 <div class="form-group row">
                   <label for="id_service" class="col-2 col-form-label">Service</label>
                   <div class="col-10">  

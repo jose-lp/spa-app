@@ -6,39 +6,56 @@
     <!-- NAVIGATION -->
     <link rel="stylesheet" href="https://bootswatch.com/4/united/bootstrap.min.css">
   </head>
-  <body>
+
+  
+  <body background="https://www.elementsspacr.com/wp-content/uploads/2017/08/spa-elements.jpg">
 
 </br>
 </br>
-<center>
+
     <div class="container mt-5">
     </br>
     </br>
+    </br>
+    </br>
+    </br>
         <div class="row">
-          <div class="col-md-5 offset-md-3 card">
+          <div class="col-md-5 mx-auto">
             <div class="card-body">
               <form action="../home/" method="POST">
                 {% csrf_token %} 
-                <div class="form-group">
-                  Correo: <input type="text" name="email" id=id_email class="form-control" autofocus>
+                         
+                <center>
+                <div class="form-group">  
+                  Email: <input type="text" name="email" id=id_email class="form-control" autofocus>
                 </div>
+                </center>
+
+                <h6 for="id_error_email" class="text-danger"> {{error.email}} </h6>
+
+                <center>
                 <div class="form-group">
-                  Contraseña: <input type="password" name="password" id=id_password class="form-control">
+                  Password: <input type="password" name="password" id=id_password class="form-control">
                 </div>
-      
+                </center>
+
+                <h6 for="id_error_password" class="text-danger"> {{error.password}}</h6>
+                
+                </br>
+                <center>
                 <button type="submit" class="btn btn-primary">
-                  Iniciar Sesion
+                  Log In
+
                 </button>
                 <button type="button" class="btn btn-primary" onclick="location.href='../register/'">
-                    Crear Cuenta
+                    Sign Up
                 </button>
+                </center>
               </form>
             </div>
           </div>
         </div>
       </div>
-
-</center>
 
 
 </body>
