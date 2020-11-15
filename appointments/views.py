@@ -147,7 +147,7 @@ def appointments(request):
     elif request.method=='POST' and 'delete_btn' in request.POST:
         print("press delete")
         # Se lee el id de la cita del request
-        appointment_id = request.POST['id']
+        appointment_id = request.POST['appointment_id']
         print(appointment_id)
 
         # Se elimina la cita utilizando el id
@@ -163,6 +163,7 @@ def appointments(request):
     elif request.method=='POST' and 'edit_btn' in request.POST:
         print("press edit")
         form = AppointmentForm()
+        request.session['appointment_id'] = request.POST['appointment_id']
         return render(request, 'edit_appointment.html', {'form': form ,'appointments_usr': appointments_usr})
     
     else:
@@ -172,10 +173,46 @@ def appointments(request):
     
 
 def edit_appointment(request):
-    return render(
-        request,
-        'edit_appointment.html'
-    )
+    appointments_usr  = get_appointments(request)
+    appointments_list = []
+
+    if request.method=='POST' and 'check_btn' in request.POST:
+        form = AppointmentForm()
+        try:
+            print("check")
+            request.session['date'] = request.POST['date']
+            appointments_by_date = get_appointments_by_date(request)
+
+            temp_TIME = TIME
+
+            for i in appointments_by_date:
+                if i in temp_TIME:
+                    temp_TIME.remove(i)
+            print(temp_TIME)
+
+            appointments_list = []
+            for i in temp_TIME:
+                appointments_list.append(f'{i[0]} with {i[1]}') 
+            print(appointments_list)
+        
+            return render(request, 'edit_appointment.html', {'form': form ,'appointment_list': appointments_list,  'appointments_usr': appointments_usr})
+        except:
+
+            return render(request, 'edit_appointment.html', {'form': form ,'appointment_list': appointments_list,  'appointments_usr': appointments_usr})
+    elif request.method == 'POST' and 'update_btn' in request.POST:
+        form = AppointmentForm()
+        try:
+            info = request.POST['appointments'].split(sep=' with ')
+            appointment = Appointment.objects.get(id=request.session['appointment_id'])
+            appointment.date = request.session['date']
+            appointment.time = info[0]
+            appointment.estetician = info[1]
+            appointment.service = request.POST['service']
+            appointment.save()
+            return render(request, 'appointments.html', {'form': form ,'appointments_list': appointments_list, 'appointments_usr': appointments_usr})
+        except:
+            
+            return render(request, 'appointments.html', {'form': form ,'appointments_list': appointments_list, 'appointments_usr': appointments_usr})    
 
 def get_appointments(request):
     
