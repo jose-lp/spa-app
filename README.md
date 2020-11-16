@@ -18,13 +18,17 @@ Dependencias de python:
 ```
 
 ## Instrucciones de uso
+
+### Desde la máquina host:
 1) Para levantar la página ejecute `make`
 
-2) Para construir la imagen del dockerfile ejecute `make docker_build`.
+2) Para acceder a la página coloque en el navegador 127.0.0.1:8000/home 
+### Desde un contenedor Docker:
+1) Para construir la imagen del dockerfile ejecute `make docker_build`.
 
-3) Para crear un contenedor con la aplicación ejecute make `docker_run`.
+2) Para crear un contenedor con la aplicación ejecute make `docker_run`. 
 
-**Nota:** debe concatenar /home a la url suministrada por el proograma al ejecutar make para accesar al login.
+3) Para acceder a la página coloque en el navegador localhost:8000/home
 
 ## Contribuyentes
 - [hdezmariela](https://gitlab.com/hdezmariela)  Mariela Henández Chacón
