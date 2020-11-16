@@ -62,7 +62,9 @@ def home(request):
             return render(request, 'home.html', {'form': form, 'error': error})
         except:
             form = LoginForm()
-            return render(request, 'home.html', {'form': form})
+            print("except")
+            error['email'] = "Email doesn't exist"
+            return render(request, 'home.html', {'form': form, 'error': error})
     else:
         return render(request,'home.html', {'form': form})
 

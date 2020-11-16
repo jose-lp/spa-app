@@ -5,4 +5,4 @@ docker_build:
 	docker build -t proyect_2 .
 
 docker_run:
-	docker run -d -p 8000:8000 proyect_2
+	docker run -d -p 0.0.0.0:8000:8000 proyect_2
