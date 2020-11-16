@@ -26,7 +26,7 @@ SECRET_KEY = '_!%l^k+(xnkp4nr5_61*3g_1%=s%thpdpvhie_u-79)7v+p8!)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [ "0.0.0.0" ]
 
 
 # Application definition
@@ -39,8 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'appointments.apps.AppointmentsConfig',
-    'django_tables2',
-    'widget_tweaks',
     'bootstrap3',
 ]
 
@@ -126,4 +124,3 @@ STATIC_URL = '/static/'
 #STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 #VENV_PATH = os.path.dirname(BASE_DIR)
 #STATIC_ROOT = os.path.join(VENV_PATH, 'static_root')
-DJANGO_TABLES2_TEMPLATE = "django_tables2/bootstrap.html"

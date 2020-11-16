@@ -7,8 +7,6 @@ from .forms import UserForm, LoginForm
 from .forms import AppointmentForm
 from .models import User
 from .models import Appointment
-import django_tables2 as tables
-
 
 TIME = [
     ('8:00 AM', 'José López'),
@@ -28,11 +26,6 @@ TIME = [
     ('4:00 PM' , 'José López'),
     ('4:00 PM' , 'Mariela Hernández') ]
 
-class AppointmentsTable(tables.Table):
-
-    class Meta:
-        model = Appointment
-        template_name = "django_tables2/bootstrap.html"
 
 # Create your views here.
 def home(request):
